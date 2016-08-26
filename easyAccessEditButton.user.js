@@ -11,11 +11,11 @@
 
     var courseId = document.querySelector("#content input[name=course_id]").value; // Get course ID
 
-list = document.querySelectorAll("#content_listContainer > li"); // Get list of items on page
+itemList = document.querySelectorAll("#content_listContainer > li"); // Get list of items on page
 
 var elId, openLink, openLinkHref, turnItInCheck, editLink, elDiv; // Declare variables
 
-for (var li of list){
+for (var li of itemList){
 	elId = li.id.replace("contentListItem:", ""); // Get each item's ID
 	openLink = li.querySelector("div > h3 > a"); // Get each item's (if exists)
 	elDiv = li.querySelector("div.item"); // Get each item's <div> that holds title
@@ -28,54 +28,54 @@ for (var li of list){
 			
 			if (turnItInCheck.innerText.includes("View/Complete")) {
 				console.log(elId);
-				// turnitin
+				// Turnitin
 				editLink = "/webapps/turn-plgnhndl-BBLEARN/content/modify.jsp?course_id=" + courseId + "&content_id=" + elId;
 				insertEditlink(editLink, elDiv);
 			}
 		}
 		
 		else {
-			// regular item
+			// Regular item
 			editLink = "/webapps/blackboard/execute/manageCourseItem?content_id=" + elId + "&course_id=" + courseId + "&dispatch=edit";
 			insertEditlink(editLink, elDiv);
 		}
 	}
-	// If link exists check link's href for specific words
+	// If link exists check link's href to determine which edit link to pass to insertEditlink()
 	else if (openLink !== null) {
 		openLinkHref = openLink.href;
 		
 		if ( openLinkHref.includes("launchAssessment") ) {
-			//assessment
+			//Assessment
 			editLink = "/webapps/assessment/do/content/assessment?action=MODIFY&course_id=" + courseId + "&content_id=" + elId + "&assessmentType=Test&method=modifyOptions";
 			insertEditlink(editLink, elDiv); // Add an "Edit" link
 		}
 		
 		else if (openLinkHref.includes("uploadAssignment") ) {
-			//assignment
+			//Assignment
 			editLink = "/webapps/assignment/execute/manageAssignment?method=showmodify&content_id=" + elId + "&course_id=" + courseId;
 			insertEditlink(editLink, elDiv); // Add an "Edit" link
 		}
 		
 		else if (openLinkHref.includes("http://") ) {
-			// web link
+			// Web link
 			editLink = "/webapps/blackboard/execute/manageCourseItem?content_id=" + elId + "&course_id=" + courseId + "&dispatch=edit&type=externallink";
 			insertEditlink(editLink, elDiv); // Add an "Edit" link
 		}
 		
 		else if (openLinkHref.includes("listContentEditable") ) {
-			// content folder
+			// Content folder
 			editLink = "/webapps/blackboard/content/manageFolder.jsp?content_id=" + elId + "&course_id=" + courseId;
 			insertEditlink(editLink, elDiv); // Add an "Edit" link
 		}
 		
 		else if (openLinkHref.includes("launchLink") ) {
-			// course link
+			// Course link
 			editLink = "/webapps/blackboard/content/manageCourseLink.jsp?content_id=" + elId + "&course_id=" + courseId;
 			insertEditlink(editLink, elDiv); // Add an "Edit" link
 		}
 		
 		else if (openLinkHref.includes("xid") ) {
-			// file
+			// File
 			editLink = "/webapps/blackboard/execute/content/file?cmd=edit&content_id=" + elId + "&course_id=" + courseId;
 			insertEditlink(editLink, elDiv); // Add an "Edit" link
 		}
