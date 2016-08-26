@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Easy Access Edit Link
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds an edit link immediately before the title of content items. Works with regular Items, Folders, Assessments, Blackboard Assignments (excluding peer evaluations), TurnItIn, Web Links, and Course Links.
 // @author       Daniel Victoriano
 // @match        https://fiu.blackboard.com/webapps/blackboard/content/listContentEditable.jsp?*
