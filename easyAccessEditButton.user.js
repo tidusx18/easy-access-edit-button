@@ -27,7 +27,6 @@
 			if (turnItInCheck !== null) {
 				
 				if (turnItInCheck.innerText.includes("View/Complete")) {
-					console.log(elId);
 					// Turnitin
 					editLink = "/webapps/turn-plgnhndl-BBLEARN/content/modify.jsp?course_id=" + courseId + "&content_id=" + elId;
 					insertEditlink(editLink, elDiv);
