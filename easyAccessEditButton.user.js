@@ -55,7 +55,7 @@
 				insertEditlink(editLink, elDiv); // Add an "Edit" link
 			}
 			
-			else if (openLinkHref.includes("http://") ) {
+			else if (openLinkHref.includes("http://") || openLinkHref.includes("https://") && !openLinkHref.includes("fiu.blackboard.com") ) {
 				// Web link
 				editLink = "/webapps/blackboard/execute/manageCourseItem?content_id=" + elId + "&course_id=" + courseId + "&dispatch=edit&type=externallink";
 				insertEditlink(editLink, elDiv); // Add an "Edit" link
